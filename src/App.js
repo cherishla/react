@@ -49,15 +49,7 @@ class App extends Component {
     });
   }
   render() {
-    const style={
-      backgroundColor:'green',
-      color:'white',
-      font:'inherit',
-      border:'1px solid blue',
-      padding:'8px',
-      cursor:'pointer'
-    };
-
+    let btnClass;
     let persons;
     if(this.state.showPerson){
       persons=(
@@ -70,7 +62,8 @@ class App extends Component {
               )}
             </div>
       );
-      style.backgroundColor = 'red';
+      
+      btnClass=classes.Red;
     }
     const assignedClasses = [];
     if(this.state.persons.length <= 2)
@@ -82,8 +75,8 @@ class App extends Component {
       <div className={classes.App}>
           <h1>Welcome to React</h1>
           <p className={assignedClasses.join(' ')}>This is really working!</p>
-          <button style={style} key='btn1' onClick={()=>{this.switchNameHandler('Max2');}}>Switch Name</button>
-          <button style={style} key='btn2' onClick={this.togglePersonHandler}>Toggle Name</button>
+          <button className={btnClass} onClick={()=>{this.switchNameHandler('Max2');}}>Switch Name</button>
+          <button className={btnClass} onClick={this.togglePersonHandler}>Toggle Name</button>
           {persons}
       </div>
     );
