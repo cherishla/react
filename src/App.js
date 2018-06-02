@@ -34,18 +34,19 @@ class App extends Component {
     //need copy array
     //const persons = this.state.persons.slice();
     //or using spread operator
-    const persons = [...this.state.perosns];
+    const persons = [...this.state.persons];
     persons.splice(personIndex,1);
     this.setState({persons:persons});
   }
-  nameChangeHandler=(event)=>{
-
+  nameChangeHandler=(event, id)=>{
+     const personIndex = this.state.persons.findIndex(p=>{return p.id === id});
+     const person = {...this.state.persons[personIndex]};
+     person.name = event.target.value;
+     const persons = [...this.state.persons];
+     persons[personIndex] = person;
      this.setState({ 
-      persons:[
-        { id:'a1', name: 'Max', age:28},
-        { id:'a2', name: event.target.value, age:29},
-        { id:'a3', name: 'Lala', age:25}
-    ]});
+      persons
+    });
   }
   render() {
     const style={
@@ -62,7 +63,9 @@ class App extends Component {
             <div>
               {this.state.persons.map((person, index)=>{
                 return <Person key={person.id} name={person.name} age={person.age}
-                        click={()=>this.deletePersonHandler(index)} />}
+                          click={()=>this.deletePersonHandler(index)}
+                          changed={(event)=>this.nameChangeHandler(event, person.id)}
+                         />}
               )}
             </div>
       );
