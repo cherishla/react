@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React,  {Component} from 'react';
+import Radium from 'radium';
 import './App.css';
 import Person from './Person/Person';
 
@@ -12,7 +13,7 @@ class App extends Component {
     otherState:'some other value',
     showPerson:false
   }
-
+ 
   switchNameHandler =(newName)=>{
     //console.log('Was clicked!');
     //DoN'T DO THIS: this.state.persons[0].name='Maximilian'
@@ -55,7 +56,12 @@ class App extends Component {
       font:'inherit',
       border:'1px solid blue',
       padding:'8px',
-      cursor:'pointer'
+      cursor:'pointer',
+      ':hover':{
+        backgroundColor:'lightgreen',
+        color:'black'
+      }
+    
     };
 
     let persons;
@@ -71,6 +77,10 @@ class App extends Component {
             </div>
       );
       style.backgroundColor = 'red';
+      style[':hover']={
+        backgroundColor:'lightred',
+        color:'black'
+      };
     }
     const classes = [];
     if(this.state.persons.length <= 2)
@@ -82,8 +92,8 @@ class App extends Component {
       <div className="App">
           <h1>Welcome to React</h1>
           <p className={classes.join(' ')}>This is really working!</p>
-          <button style={style} onClick={()=>{this.switchNameHandler('Max2');}}>Switch Name</button>
-          <button style={style} onClick={this.togglePersonHandler}>Toggle Name</button>
+          <button style={style} key='btn1' onClick={()=>{this.switchNameHandler('Max2');}}>Switch Name</button>
+          <button style={style} key='btn2' onClick={this.togglePersonHandler}>Toggle Name</button>
           {persons}
       </div>
     );
@@ -92,4 +102,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
+
