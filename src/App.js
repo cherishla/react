@@ -44,14 +44,11 @@ class App extends Component {
       border:'1px solid blue',
       padding:'8px',
       cursor:'pointer'
-    }
-    return (
-      <div className="App">
-          <h1>Welcome to React</h1>
-          <p>This is really working!</p>
-          <button style={style} onClick={()=>{this.switchNameHandler('Max2');}}>Switch Name</button>
-          <button style={style} onClick={this.togglePersonHandler}>Toggle Name</button>
-          {this.state.showPerson ?
+    };
+
+    let persons;
+    if(this.state.showPerson){
+      persons=(
             <div>
               <Person 
                 name={this.state.persons[0].name} 
@@ -64,8 +61,17 @@ class App extends Component {
               <Person 
                 name={this.state.persons[2].name} 
                 age={this.state.persons[2].age} />
-            </div> : null
-          }
+            </div>
+      );
+    }
+
+    return (
+      <div className="App">
+          <h1>Welcome to React</h1>
+          <p>This is really working!</p>
+          <button style={style} onClick={()=>{this.switchNameHandler('Max2');}}>Switch Name</button>
+          <button style={style} onClick={this.togglePersonHandler}>Toggle Name</button>
+          {persons}
       </div>
     );
       // return React.createElement('div',{className:'App'}, React.createElement('h1', null, 'Welcome to React'));
