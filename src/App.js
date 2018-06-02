@@ -1,5 +1,5 @@
 import React,  {Component} from 'react';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import './App.css';
 import Person from './Person/Person';
 
@@ -89,6 +89,7 @@ class App extends Component {
       classes.push('bold');
 
     return (
+      <StyleRoot>
       <div className="App">
           <h1>Welcome to React</h1>
           <p className={classes.join(' ')}>This is really working!</p>
@@ -96,6 +97,7 @@ class App extends Component {
           <button style={style} key='btn2' onClick={this.togglePersonHandler}>Toggle Name</button>
           {persons}
       </div>
+      </StyleRoot>
     );
       // return React.createElement('div',{className:'App'}, React.createElement('h1', null, 'Welcome to React'));
     
