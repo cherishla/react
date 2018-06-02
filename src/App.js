@@ -5,9 +5,9 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons:[
-     { name: 'Max', age:28},
-     { name: 'Manu', age:29},
-     { name: 'Lala', age:25}
+     { id:'a1', name: 'Max', age:28},
+     { id:'a2', name: 'Manu', age:29},
+     { id:'a3', name: 'Lala', age:25}
     ],
     otherState:'some other value',
     showPerson:false
@@ -18,9 +18,9 @@ class App extends Component {
     //DoN'T DO THIS: this.state.persons[0].name='Maximilian'
     this.setState({ 
       persons:[
-        { name: newName, age:28},
-        { name: 'Manu', age:29},
-        { name: 'Lala', age:25}
+        { id:'a1', name: newName, age:28},
+        { id:'a2', name: 'Manu', age:29},
+        { id:'a3', name: 'Lala', age:25}
     ]});
   }
 
@@ -42,9 +42,9 @@ class App extends Component {
 
      this.setState({ 
       persons:[
-        { name: 'Max', age:28},
-        { name: event.target.value, age:29},
-        { name: 'Lala', age:25}
+        { id:'a1', name: 'Max', age:28},
+        { id:'a2', name: event.target.value, age:29},
+        { id:'a3', name: 'Lala', age:25}
     ]});
   }
   render() {
@@ -61,7 +61,7 @@ class App extends Component {
       persons=(
             <div>
               {this.state.persons.map((person, index)=>{
-                return <Person name={person.name} age={person.age}
+                return <Person key={person.id} name={person.name} age={person.age}
                         click={()=>this.deletePersonHandler(index)} />}
               )}
             </div>
