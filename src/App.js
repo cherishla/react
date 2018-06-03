@@ -1,7 +1,7 @@
 import React,  {Component} from 'react';
 import classes from './App.css';
 import Person from './Person/Person';
-
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 class App extends Component {
   state = {
     persons:[
@@ -53,6 +53,7 @@ class App extends Component {
     let persons;
     if(this.state.showPerson){
       persons=(
+        
             <div>
               {this.state.persons.map((person, index)=>{
                 return <Person key={person.id} name={person.name} age={person.age}
@@ -61,6 +62,7 @@ class App extends Component {
                          />}
               )}
             </div>
+            
       );
       
       btnClass=classes.Red;
@@ -72,6 +74,7 @@ class App extends Component {
       assignedClasses.push(classes.bold);
 
     return (
+      <ErrorBoundary>
       <div className={classes.App}>
           <h1>Welcome to React</h1>
           <p className={assignedClasses.join(' ')}>This is really working!</p>
@@ -79,6 +82,7 @@ class App extends Component {
           <button className={btnClass} onClick={this.togglePersonHandler}>Toggle Name</button>
           {persons}
       </div>
+      </ErrorBoundary>
     );
       // return React.createElement('div',{className:'App'}, React.createElement('h1', null, 'Welcome to React'));
     
