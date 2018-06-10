@@ -67,6 +67,7 @@ class App extends Component {
       <ErrorBoundary>
         <div className={classes.App}>
           <Cockpit 
+            appTitle={this.props.title}
             showPerson={this.state.showPerson} 
             persons={this.state.persons}
             clicked={this.togglePersonHandler} />
